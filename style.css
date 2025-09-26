@@ -1,0 +1,133 @@
+:root {
+    --bg-color: #f0f2f5;
+    --container-bg: #ffffff;
+    --display-bg: #222222;
+    --display-text: #ffffff;
+    --btn-bg: #f8f9fa;
+    --btn-hover: #e9ecef;
+    --operator-bg: #ff9f0a;
+    --operator-text: white;
+    --shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    margin: 0;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 400px;
+    background: var(--container-bg);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+header {
+    padding: 20px;
+    background-color: #4a90e2;
+    color: white;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.nav-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: rgba(255,255,255,0.2);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.nav-btn:hover {
+    background-color: rgba(255,255,255,0.4);
+}
+
+.nav-btn.active {
+    background-color: white;
+    color: #4a90e2;
+    font-weight: bold;
+}
+
+main {
+    padding: 20px;
+}
+
+.calculator {
+    display: none; /* Sembunyikan semua kalkulator */
+}
+
+.calculator.active {
+    display: block; /* Tampilkan hanya yang aktif */
+}
+
+/* Styling untuk Kalkulator Normal */
+#normal-calculator .display {
+    background-color: var(--display-bg);
+    color: var(--display-text);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+#normal-calculator .display input {
+    width: 100%;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2.5em;
+    text-align: right;
+    outline: none;
+}
+
+#normal-calculator .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+#normal-calculator button {
+    padding: 20px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--btn-bg);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#normal-calculator button:hover {
+    background-color: var(--btn-hover);
+}
+
+#normal-calculator .operator {
+    background-color: var(--operator-bg);
+    color: var(--operator-text);
+}
+
+#normal-calculator .equals {
+    grid-row: span 2;
+    background-color: #4caf50;
+    color: white;
+}
