@@ -3,130 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalkulator Kompleks</title>
+    <title>siKalkulator - Dashboard Kalkulator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="app-container">
-        <header>
-            <h1>Kalkulator Multi-Fungsi</h1>
-            <nav>
-                <button class="nav-btn active" data-calculator="normal">Normal</button>
-                <button class="nav-btn" data-calculator="ip">IP Network</button>
-                <button class="nav-btn" data-calculator="chemistry">Kimia</button>
-                <button class="nav-btn" data-calculator="calories">Kalori</button>
-                <button class="nav-btn" data-calculator="binary">Biner/Hexa</button>
-            </nav>
-        </header>
-        <main id="calculator-host">
-            <div id="normal-calculator" class="calculator active">
-                <div class="display">
+    <div class="dashboard-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h3>siKalkulator</h3>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link active" data-target="standar">Kalkulator Standar</a></li>
+                <li><a href="#" class="nav-link" data-target="ip">Kalkulator Jaringan IP</a></li>
+                <li><a href="#" class="nav-link" data-target="kimia">Kalkulator Massa Molar</a></li>
+                <li><a href="#" class="nav-link" data-target="kalori">Kalkulator Kalori (BMR)</a></li>
+                <li><a href="#" class="nav-link" data-target="basis-angka">Konverter Basis Angka</a></li>
+                <li><a href="#" class="nav-link" data-target="bmi">Kalkulator BMI</a></li>
+                <li><a href="#" class="nav-link" data-target="satuan">Konverter Satuan</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <div id="standar" class="page active">
+                <h2>Kalkulator Standar</h2>
+                <div class="calculator-normal">
                     <input type="text" id="normal-display" readonly placeholder="0">
-                </div>
-                <div class="buttons">
-                    <button onclick="clearDisplay()">C</button>
-                    <button onclick="deleteLast()">DEL</button>
-                    <button class="operator" onclick="appendValue('/')">/</button>
-                    <button class="operator" onclick="appendValue('*')">x</button>
-                    <button onclick="appendValue('7')">7</button>
-                    <button onclick="appendValue('8')">8</button>
-                    <button onclick="appendValue('9')">9</button>
-                    <button class="operator" onclick="appendValue('-')">-</button>
-                    <button onclick="appendValue('4')">4</button>
-                    <button onclick="appendValue('5')">5</button>
-                    <button onclick="appendValue('6')">6</button>
-                    <button class="operator" onclick="appendValue('+')">+</button>
-                    <button onclick="appendValue('1')">1</button>
-                    <button onclick="appendValue('2')">2</button>
-                    <button onclick="appendValue('3')">3</button>
-                    <button rowspan="2" class="equals" onclick="calculateResult()">=</button>
-                    <button onclick="appendValue('0')">0</button>
-                    <button onclick="appendValue('.')">.</button>
+                    <div class="buttons">
+                        <button class="op">C</button><button class="op">DEL</button><button class="op" data-value="/">/</button><button class="op" data-value="*">x</button>
+                        <button data-value="7">7</button><button data-value="8">8</button><button data-value="9">9</button><button class="op" data-value="-">-</button>
+                        <button data-value="4">4</button><button data-value="5">5</button><button data-value="6">6</button><button class="op" data-value="+">+</button>
+                        <button data-value="1">1</button><button data-value="2">2</button><button data-value="3">3</button><button class="equals" rowspan="2">=</button>
+                        <button data-value="0" class="zero">0</button><button data-value=".">.</button>
+                    </div>
                 </div>
             </div>
 
-            <div id="ip-calculator" class="calculator">
-                <h2>Kalkulator Jaringan IP</h2>
-                <p>Fitur sedang dalam pengembangan.</p>
-            </div>
-            <div id="chemistry-calculator" class="calculator">
-                <h2>Kalkulator Kimia</h2>
-                 <p>Fitur sedang dalam pengembangan.</p>
-            </div>
-            <div id="calories-calculator" class="calculator">
-                <h2>Kalkulator Kalori</h2>
-                 <p>Fitur sedang dalam pengembangan.</p>
-            </div>
-            <div id="binary-calculator" class="calculator">
-                <h2>Kalkulator Biner & Hexa</h2>
-                 <p>Fitur sedang dalam pengembangan.</p>
-            </div>
-        </main>
-    </div>
-    <script src="script.js"></script>
-</body>
-</html><!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalkulator Kompleks</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="app-container">
-        <header>
-            <h1>Kalkulator Multi-Fungsi</h1>
-            <nav>
-                <button class="nav-btn active" data-calculator="normal">Normal</button>
-                <button class="nav-btn" data-calculator="ip">IP Network</button>
-                <button class="nav-btn" data-calculator="chemistry">Kimia</button>
-                <button class="nav-btn" data-calculator="calories">Kalori</button>
-                <button class="nav-btn" data-calculator="binary">Biner/Hexa</button>
-            </nav>
-        </header>
-        <main id="calculator-host">
-            <div id="normal-calculator" class="calculator active">
-                <div class="display">
-                    <input type="text" id="normal-display" readonly placeholder="0">
+            <div id="ip" class="page">
+                <h2>Kalkulator Jaringan IP (IPv4)</h2>
+                <div class="form-group">
+                    <label for="ip-address">Alamat IP:</label>
+                    <input type="text" id="ip-address" placeholder="Contoh: 192.168.1.10">
                 </div>
-                <div class="buttons">
-                    <button onclick="clearDisplay()">C</button>
-                    <button onclick="deleteLast()">DEL</button>
-                    <button class="operator" onclick="appendValue('/')">/</button>
-                    <button class="operator" onclick="appendValue('*')">x</button>
-                    <button onclick="appendValue('7')">7</button>
-                    <button onclick="appendValue('8')">8</button>
-                    <button onclick="appendValue('9')">9</button>
-                    <button class="operator" onclick="appendValue('-')">-</button>
-                    <button onclick="appendValue('4')">4</button>
-                    <button onclick="appendValue('5')">5</button>
-                    <button onclick="appendValue('6')">6</button>
-                    <button class="operator" onclick="appendValue('+')">+</button>
-                    <button onclick="appendValue('1')">1</button>
-                    <button onclick="appendValue('2')">2</button>
-                    <button onclick="appendValue('3')">3</button>
-                    <button rowspan="2" class="equals" onclick="calculateResult()">=</button>
-                    <button onclick="appendValue('0')">0</button>
-                    <button onclick="appendValue('.')">.</button>
+                <div class="form-group">
+                    <label for="ip-cidr">Subnet Mask (CIDR):</label>
+                    <input type="number" id="ip-cidr" min="0" max="32" placeholder="Contoh: 24">
+                </div>
+                <button id="ip-calculate-btn">Hitung</button>
+                <div id="ip-result" class="result-box"></div>
+            </div>
+
+            <div id="kimia" class="page">
+                <h2>Kalkulator Massa Molar</h2>
+                <div class="form-group">
+                    <label for="kimia-formula">Rumus Kimia:</label>
+                    <input type="text" id="kimia-formula" placeholder="Contoh: H2O atau C6H12O6">
+                </div>
+                <button id="kimia-calculate-btn">Hitung</button>
+                <div id="kimia-result" class="result-box"></div>
+            </div>
+
+            <div id="kalori" class="page">
+                <h2>Kalkulator Kalori (BMR & TDEE)</h2>
+                <div class="form-group">
+                    <label for="kalori-usia">Usia (tahun):</label>
+                    <input type="number" id="kalori-usia" min="1">
+                </div>
+                <div class="form-group">
+                    <label>Jenis Kelamin:</label>
+                    <select id="kalori-gender">
+                        <option value="male">Pria</option>
+                        <option value="female">Wanita</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="kalori-berat">Berat Badan (kg):</label>
+                    <input type="number" id="kalori-berat" min="1">
+                </div>
+                 <div class="form-group">
+                    <label for="kalori-tinggi">Tinggi Badan (cm):</label>
+                    <input type="number" id="kalori-tinggi" min="1">
+                </div>
+                <div class="form-group">
+                    <label for="kalori-aktivitas">Tingkat Aktivitas:</label>
+                    <select id="kalori-aktivitas">
+                        <option value="1.2">Jarang (sedentary)</option>
+                        <option value="1.375">Ringan (1-3 hari/minggu)</option>
+                        <option value="1.55">Sedang (3-5 hari/minggu)</option>
+                        <option value="1.725">Aktif (6-7 hari/minggu)</option>
+                        <option value="1.9">Sangat Aktif (pekerjaan fisik)</option>
+                    </select>
+                </div>
+                <button id="kalori-calculate-btn">Hitung</button>
+                <div id="kalori-result" class="result-box"></div>
+            </div>
+
+            <div id="basis-angka" class="page">
+                <h2>Konverter Basis Angka</h2>
+                <div class="form-group">
+                    <label for="basis-desimal">Desimal:</label>
+                    <input type="text" id="basis-desimal" data-base="10">
+                </div>
+                <div class="form-group">
+                    <label for="basis-biner">Biner:</label>
+                    <input type="text" id="basis-biner" data-base="2">
+                </div>
+                <div class="form-group">
+                    <label for="basis-hexa">Heksadesimal:</label>
+                    <input type="text" id="basis-hexa" data-base="16">
                 </div>
             </div>
 
-            <div id="ip-calculator" class="calculator">
-                <h2>Kalkulator Jaringan IP</h2>
-                <p>Fitur sedang dalam pengembangan.</p>
+            <div id="bmi" class="page">
+                <h2>Kalkulator Body Mass Index (BMI)</h2>
+                 <div class="form-group">
+                    <label for="bmi-berat">Berat Badan (kg):</label>
+                    <input type="number" id="bmi-berat" min="1">
+                </div>
+                 <div class="form-group">
+                    <label for="bmi-tinggi">Tinggi Badan (cm):</label>
+                    <input type="number" id="bmi-tinggi" min="1">
+                </div>
+                <button id="bmi-calculate-btn">Hitung</button>
+                <div id="bmi-result" class="result-box"></div>
             </div>
-            <div id="chemistry-calculator" class="calculator">
-                <h2>Kalkulator Kimia</h2>
-                 <p>Fitur sedang dalam pengembangan.</p>
-            </div>
-            <div id="calories-calculator" class="calculator">
-                <h2>Kalkulator Kalori</h2>
-                 <p>Fitur sedang dalam pengembangan.</p>
-            </div>
-            <div id="binary-calculator" class="calculator">
-                <h2>Kalkulator Biner & Hexa</h2>
-                 <p>Fitur sedang dalam pengembangan.</p>
+
+            <div id="satuan" class="page">
+                <h2>Konverter Satuan</h2>
+                <div class="form-group">
+                    <input type="number" id="satuan-input" placeholder="Masukkan nilai">
+                    <select id="satuan-dari">
+                        <option value="c">Celsius (°C)</option>
+                        <option value="f">Fahrenheit (°F)</option>
+                        <option value="k">Kelvin (K)</option>
+                        <option value="m">Meter (m)</option>
+                        <option value="km">Kilometer (km)</option>
+                        <option value="cm">Centimeter (cm)</option>
+                        <option value="kg">Kilogram (kg)</option>
+                        <option value="g">Gram (g)</option>
+                        <option value="lb">Pound (lb)</option>
+                    </select>
+                </div>
+                 <div class="form-group">
+                    <label>Konversi Ke:</label>
+                     <select id="satuan-ke">
+                        </select>
+                </div>
+                <div id="satuan-result" class="result-box"></div>
             </div>
         </main>
     </div>
