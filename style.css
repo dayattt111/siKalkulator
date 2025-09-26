@@ -1,13 +1,22 @@
+/* --- siKalkulator Elegant Theme --- */
+
+/* 1. Variables & Global Styles */
 :root {
-    --sidebar-bg: #2c3e50;
-    --sidebar-text: #ecf0f1;
-    --sidebar-hover: #34495e;
-    --sidebar-active: #1abc9c;
-    --content-bg: #ecf0f1;
-    --text-color: #2c3e50;
-    --border-color: #bdc3c7;
-    --primary-btn: #3498db;
-    --primary-btn-hover: #2980b9;
+    --sidebar-bg: #1e293b; /* Dark Slate Blue */
+    --content-bg: #f8fafc; /* Very Light Gray */
+    --card-bg: #ffffff;
+    --primary-text: #0f172a; /* Near Black */
+    --secondary-text: #64748b; /* Gray */
+    --sidebar-text: #e2e8f0; /* Light Gray for Sidebar */
+    --accent-color: #38bdf8; /* Sky Blue */
+    --accent-color-dark: #0ea5e9;
+    --border-color: #e2e8f0;
+    --danger-color: #ef4444;
+    --success-color: #22c55e;
+    --warning-color: #f59e0b;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
 * {
@@ -17,9 +26,11 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--font-sans);
     background-color: var(--content-bg);
-    color: var(--text-color);
+    color: var(--primary-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .dashboard-container {
@@ -27,7 +38,7 @@ body {
     min-height: 100vh;
 }
 
-/* Sidebar Navigation */
+/* 2. Sidebar Navigation */
 .sidebar {
     width: 260px;
     background-color: var(--sidebar-bg);
@@ -35,41 +46,49 @@ body {
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
+    border-right: 1px solid var(--border-color);
 }
 
 .sidebar-header {
-    padding: 20px;
+    padding: 24px;
     text-align: center;
-    font-size: 1.5em;
-    border-bottom: 1px solid var(--sidebar-hover);
+    font-size: 1.6em;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #334155; /* Darker border inside sidebar */
 }
 
 .nav-menu {
     list-style: none;
-    flex-grow: 1;
+    margin-top: 16px;
 }
 
 .nav-menu li a {
     display: block;
-    padding: 15px 20px;
+    padding: 16px 24px;
     text-decoration: none;
     color: var(--sidebar-text);
-    transition: background-color 0.3s;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+    border-left: 4px solid transparent;
 }
 
 .nav-menu li a:hover {
-    background-color: var(--sidebar-hover);
+    background-color: #334155;
+    color: #ffffff;
 }
 
 .nav-menu li a.active {
-    background-color: var(--sidebar-active);
-    font-weight: bold;
+    background-color: #0f172a;
+    color: #ffffff;
+    font-weight: 600;
+    border-left: 4px solid var(--accent-color);
 }
 
-/* Main Content */
+/* 3. Main Content Area */
 .content {
     flex-grow: 1;
-    padding: 30px;
+    padding: 40px;
     overflow-y: auto;
 }
 
@@ -79,96 +98,142 @@ body {
 
 .page.active {
     display: block;
-    animation: fadeIn 0.5s ease-in-out;
+    animation: fadeIn 0.4s ease-in-out;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(15px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
 h2 {
-    margin-bottom: 20px;
-    border-bottom: 2px solid var(--sidebar-active);
-    padding-bottom: 10px;
+    font-size: 2.25rem;
+    margin-bottom: 24px;
+    font-weight: 700;
+    color: var(--primary-text);
 }
 
-/* Form & Result Styles */
+/* 4. Forms, Inputs, and Buttons */
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--secondary-text);
 }
 
 input[type="text"], input[type="number"], select {
     width: 100%;
-    padding: 10px;
+    padding: 12px 16px;
     border: 1px solid var(--border-color);
-    border-radius: 5px;
-    font-size: 1em;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: var(--card-bg);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus, input[type="number"]:focus, select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.3);
 }
 
 button {
-    padding: 10px 20px;
+    padding: 12px 24px;
     border: none;
-    border-radius: 5px;
-    background-color: var(--primary-btn);
+    border-radius: 8px;
+    background-color: var(--accent-color);
     color: white;
-    font-size: 1em;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.2s ease-in-out;
+    box-shadow: var(--shadow-sm);
 }
 
 button:hover {
-    background-color: var(--primary-btn-hover);
+    background-color: var(--accent-color-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
 }
 
 .result-box {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #ffffff;
-    border-left: 5px solid var(--sidebar-active);
-    border-radius: 5px;
-    min-height: 50px;
+    margin-top: 24px;
+    padding: 20px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-left: 5px solid var(--accent-color);
+    border-radius: 8px;
+    min-height: 60px;
     white-space: pre-wrap;
     word-wrap: break-word;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    box-shadow: var(--shadow-sm);
 }
 
-/* Kalkulator Standar Specific Styles */
+.result-box strong {
+    color: var(--primary-text);
+}
+
+/* 5. Specific Calculator Styles */
+
+/* Kalkulator Standar */
 .calculator-normal {
-    max-width: 320px;
+    max-width: 340px;
     margin: auto;
-    background: #fff;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
 }
 
 #normal-display {
-    width: 100%;
-    background: var(--text-color);
-    color: white;
-    text-align: right;
-    font-size: 2.2em;
-    padding: 20px 15px;
-    margin-bottom: 15px;
+    background: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    font-size: 2.8em;
+    font-weight: 300;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
 }
 
 .calculator-normal .buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    gap: 12px;
 }
 
 .calculator-normal button {
     padding: 20px;
-    font-size: 1.2em;
-    border-radius: 5px;
+    font-size: 1.3rem;
+    border-radius: 8px;
+    font-weight: 500;
+    background-color: #f1f5f9; /* Light gray button */
+    color: var(--primary-text);
+    box-shadow: none;
 }
-.calculator-normal .op { background-color: #f1c40f; }
-.calculator-normal .equals { background-color: #2ecc71; grid-row: span 2;}
+.calculator-normal button:hover {
+    background-color: #e2e8f0; /* Darker gray on hover */
+    transform: none;
+    box-shadow: none;
+}
+
+.calculator-normal .op { 
+    background-color: var(--warning-color); 
+    color: white;
+}
+.calculator-normal .op:hover { background-color: #f97316; }
+
+.calculator-normal .equals { 
+    background-color: var(--success-color); 
+    color: white;
+    grid-row: span 2;
+}
+.calculator-normal .equals:hover { background-color: #16a34a; }
+
 .calculator-normal .zero { grid-column: span 2; }
